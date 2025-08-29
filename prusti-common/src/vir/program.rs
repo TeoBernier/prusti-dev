@@ -27,7 +27,7 @@ impl Program {
         }
     }
     pub fn get_name_with_check_mode(&self) -> String {
-        format!("{}-{}", self.get_name(), self.get_check_mode())
+        format!("{}-{}", self.get_check_mode(), self.get_name())
     }
 }
 

@@ -137,7 +137,13 @@ pub fn dump_viper_program(
     program_name: &str,
 ) {
     let namespace = "viper_program";
-    let filename = format!("{program_name}.vpr");
+    let filename = program_name.to_string();
+    let mut path_parts = filename.rsplitn(3, "::");
+    let function = path_parts.next().unwrap_or("");
+    let module = path_parts.next().unwrap_or("");
+    let path = path_parts.next().unwrap_or("");
+    let filename = format!("{module}::{function}::{path}.vpr");
+
     info!("Dumping Viper program to '{}/{}'", namespace, filename);
     report(namespace, filename, ast_utils.pretty_print(program));
 }

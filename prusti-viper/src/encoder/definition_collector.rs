@@ -294,8 +294,10 @@ impl<'p, 'v: 'p, 'tcx: 'v> Collector<'p, 'v, 'tcx> {
                                 && axiom.name.ends_with("$injectivity");
                             let retain_field_axiom =
                                 used_snap_domain_constructor && axiom.name.ends_with("$axiom");
+                            let retain_discriminant_axiom = 
+                                axiom.name.ends_with("$discriminant_axiom");
 
-                            retain_type_invariant || retain_injectivity || retain_field_axiom
+                            retain_type_invariant || retain_injectivity || retain_field_axiom || retain_discriminant_axiom
                         });
                         let functions_in_axioms =
                             Self::get_domain_functions_used_in_axioms(&domain.axioms);
